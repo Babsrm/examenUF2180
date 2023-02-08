@@ -155,16 +155,14 @@ public class DialogoAnadirDepartamento extends JDialog {
 	try {
 		int codDepartamento = Integer.parseInt(txtCodDepartamento.getText());
 		int codCentro = Integer.parseInt(txtCodCentro.getText());
-		String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand();
+		String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand().toUpperCase();
 		int presupuesto = (int) spinner.getValue();
 		String nombre = txtNombre.getText();
 			
 		Departamento dpto = new Departamento(codDepartamento, codCentro, tipoDir, presupuesto, nombre);
 		controlador.insertarDepartamento(dpto);
 		
-		if (
-				//tipoDir == null || tipoDir.isBlank() 
-			 nombre==null || nombre.isBlank()){
+		if ( nombre==null || nombre.isBlank()){
 			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca todos los datos requeridos.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
 			return;}
 			
