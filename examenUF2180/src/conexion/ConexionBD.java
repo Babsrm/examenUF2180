@@ -7,16 +7,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * @author David
- *
- */
 public class ConexionBD {
 
 	private static final String database = "empresa";
-	private static final String usuario = "root";
-	private static final String contrasena = "123456";
+	private static final String usuario = "barbara";
+	private static final String contrasena = "1234";
 	private static final String url="jdbc:mysql://localhost/"+database;
+//  create user barbara IDENTIFIED by '1234';
+//	grant
+//	    SELECT, INSERT, UPDATE, DELETE 
+//	    on empresa.*
+//	    to barbara;
 	
 	private Connection conexion=null;
 	
@@ -26,7 +27,7 @@ public class ConexionBD {
 			return conexion;
 		}
 		
-		// REgistra el driver de MySQL
+		// Registra el driver de MySQL
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
@@ -45,7 +46,7 @@ public class ConexionBD {
 			conexion.close();
 			conexion=null;
 		} catch (SQLException e) {
-			System.out.println("Erorr cerrrando la conexion "+ e.getMessage());
+			System.out.println("Error cerrando la conexion "+ e.getMessage());
 		}
 	}
 

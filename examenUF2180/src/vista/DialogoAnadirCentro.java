@@ -120,7 +120,7 @@ public class DialogoAnadirCentro extends JDialog {
 		String nombre = txtNombre.getText();
 		String direccion = txtDireccion.getText();
 		Centro centro = new Centro(cod_centro, nombre, direccion);
-		controlador.insertaCentro(centro);
+		controlador.insertarCentro(centro);
 		
 	}
 

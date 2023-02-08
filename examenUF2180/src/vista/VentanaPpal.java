@@ -40,25 +40,25 @@ public class VentanaPpal extends JFrame {
 		contentPane.add(panel, "cell 1 1,grow");
 		panel.setLayout(new MigLayout("", "[]", "[::100px,grow][27.00,grow][::100px,grow]"));
 		
-		JButton btnNewButton = new JButton("Ver Centros");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnVerCentros = new JButton("Ver Centros");
+		btnVerCentros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador.mostrarListarCentros();
+				controlador.mostrarListaCentros();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(btnNewButton, "cell 0 0,grow");
-		btnNewButton.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
+		btnVerCentros.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(btnVerCentros, "cell 0 0,grow");
+		btnVerCentros.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
 		
-		JButton btnNewButton_1 = new JButton("Nuevo Centro");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnNuevoCentro = new JButton("Nuevo Centro");
+		btnNuevoCentro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.mostrarInsertarCentros();
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(btnNewButton_1, "cell 0 2,growy");
-		btnNewButton_1.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
+		btnNuevoCentro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(btnNuevoCentro, "cell 0 2,growy");
+		btnNuevoCentro.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gesti\u00F3n de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -66,15 +66,25 @@ public class VentanaPpal extends JFrame {
 		contentPane.add(panel_1, "cell 3 1,grow");
 		panel_1.setLayout(new MigLayout("", "[]", "[::100px,grow][36.00,grow][::100px,grow]"));
 		
-		JButton btnNewButton_2 = new JButton("Ver Departamentos");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(btnNewButton_2, "cell 0 0,grow");
-		btnNewButton_2.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
+		JButton btnVerDepartamentos = new JButton("Ver Departamentos");
+		btnVerDepartamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.mostrarListaDepartamentos();
+			}
+		});
+		btnVerDepartamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(btnVerDepartamentos, "cell 0 0,grow");
+		btnVerDepartamentos.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
 		
-		JButton btnNewButton_3 = new JButton("Nuevo Departamento ");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(btnNewButton_3, "cell 0 2,growy");
-		btnNewButton_3.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
+		JButton btnNuevoDepartamento = new JButton("Nuevo Departamento ");
+		btnNuevoDepartamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.mostrarInsertarDepartamentos();
+			}
+		});
+		btnNuevoDepartamento.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(btnNuevoDepartamento, "cell 0 2,growy");
+		btnNuevoDepartamento.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
 	}
 
 	public void setControlador(Controlador controlador) {
