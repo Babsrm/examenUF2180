@@ -6,26 +6,26 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
-import modelo.Centro;
 import modelo.Departamento;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 public class DialogoAnadirDepartamento extends JDialog {
 
@@ -36,6 +36,8 @@ public class DialogoAnadirDepartamento extends JDialog {
 	private JTextField txtCodCentro;
 	private final ButtonGroup buttonGroupTipoDir = new ButtonGroup();
 	private JSpinner spinner;
+	private JRadioButton rdbtnPropiedad;
+	private JRadioButton rdbtnFunciones;
 
 	public DialogoAnadirDepartamento() {
 		setBounds(100, 100, 450, 300);
@@ -82,14 +84,14 @@ public class DialogoAnadirDepartamento extends JDialog {
 				lblTipoDir.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			}
 			{
-				JRadioButton rdbtnPropiedad = new JRadioButton("Propiedad");
+				rdbtnPropiedad = new JRadioButton("Propiedad");
 				rdbtnPropiedad.setSelected(true);
 				buttonGroupTipoDir.add(rdbtnPropiedad);
 				rdbtnPropiedad.setActionCommand("p");
 				panel.add(rdbtnPropiedad, "cell 2 2");
 			}
 			{
-				JRadioButton rdbtnFunciones = new JRadioButton("En funciones");
+				rdbtnFunciones = new JRadioButton("En funciones");
 				buttonGroupTipoDir.add(rdbtnFunciones);
 				rdbtnFunciones.setActionCommand("f");
 				panel.add(rdbtnFunciones, "cell 3 2");
@@ -127,6 +129,7 @@ public class DialogoAnadirDepartamento extends JDialog {
 			{
 				JButton btnOk = new JButton("OK");
 				btnOk.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						recogerDatos();
 					}
@@ -139,6 +142,7 @@ public class DialogoAnadirDepartamento extends JDialog {
 			{
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
 					}
@@ -156,23 +160,39 @@ public class DialogoAnadirDepartamento extends JDialog {
 		int codDepartamento = Integer.parseInt(txtCodDepartamento.getText());
 		int codCentro = Integer.parseInt(txtCodCentro.getText());
 		String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand().toUpperCase();
+	//String tipoDir = "F"; if (rdbtnPropiedad.isSelected()){tipoDir="p"};
 		int presupuesto = (int) spinner.getValue();
 		String nombre = txtNombre.getText();
-			
+
 		Departamento dpto = new Departamento(codDepartamento, codCentro, tipoDir, presupuesto, nombre);
 		controlador.insertarDepartamento(dpto);
+
+		JOptionPane.showMessageDialog(this, "Departamento insertado correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
 		
-		if ( nombre==null || nombre.isBlank()){
-			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca todos los datos requeridos.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
-			return;}
-			
-		} 
-		catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca los datos numéricos.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
+		this.setVisible(false);
+		vaciarDatos();
 		}
+		catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca los datos numéricos correctos en código departamento/cento y los que puedan faltar.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
+		}
+	catch (SQLException e) {
+		JOptionPane.showMessageDialog(this, "Error al insertar." +e.getMessage() + " "
+				+ e.getSQLState(), "Error al insertar",JOptionPane.ERROR_MESSAGE);
 	}
-	
-	
+	}
+
+
+	public void vaciarDatos() { 
+//	este método limpia la ventana para que, al insertarse correctamente el nuevo dpto, vuelva a aparecer los campos a insertar vacíos
+		txtCodDepartamento.setText("");
+		txtCodCentro.setText("");
+		spinner.setValue(5);
+		txtNombre.setText("");
+		rdbtnPropiedad.setSelected(true);
+		rdbtnFunciones.setSelected(false);
+	}
+
+
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 	}

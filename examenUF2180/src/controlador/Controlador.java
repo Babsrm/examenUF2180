@@ -1,8 +1,6 @@
-/**
- * 
- */
 package controlador;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -83,17 +81,13 @@ public class Controlador {
 	
 	public void mostrarInsertarDepartamentos() {
 		dialogoAnadirDepartamento.setVisible(true);
+		
 	}
 
-	public void insertarDepartamento(Departamento dpto) {
+	public void insertarDepartamento(Departamento dpto) throws SQLException {
 		
 		int resultado = departamentoDAO.insertarDepartamento(dpto);
-		if (resultado ==0) {
-			JOptionPane.showMessageDialog(dialogoAnadirDepartamento, "Error, no se ha podido insertar el departamento.");
-		} else {
-			JOptionPane.showMessageDialog(dialogoAnadirDepartamento, "Departamento añadido correctamente.");
+		//no me hace falta hacer el if controlador de que ha fallado la inserción porque la he lanzado a que lo controle al ventana de dialogo
 			dialogoAnadirDepartamento.setVisible(false);
 		}
 	}
-	
-}

@@ -94,7 +94,7 @@ public class DepartamentoDAO {
 		return dpto;
     }
 
-    public int insertarDepartamento(Departamento dpto) {
+    public int insertarDepartamento(Departamento dpto) throws SQLException {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
 		int resultado=0;
@@ -112,7 +112,9 @@ public class DepartamentoDAO {
 			resultado=consulta.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("Error al realizar la consulta: "+e.getMessage());
+			System.out.println("Error al insertar: "+e.getMessage());
+			throw e;
+			//lo lanzo para que el controlador o la ventana controle la excepción por los errores que nos pueda dar (coddpto repetido o enviar sin datos)
 		} finally {
 			try {
 				consulta.close();

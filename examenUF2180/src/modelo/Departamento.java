@@ -13,7 +13,7 @@ public class Departamento {
 	public Departamento() {
 		this.codDepartamento = 0;
 		this.codCentro = 0;
-		this.tipoDir = "";
+		this.tipoDir = "P";
 		this.presupuesto = 0;
 		this.nombre = "";
 	}
@@ -45,6 +45,14 @@ public class Departamento {
 
 	public String getTipoDir() {
 		return tipoDir;
+	}
+	
+	public String getTipoDirTexto() {
+		if (this.tipoDir.equals("p")) {
+			return "En propiedad";
+		} else {
+			return "En funciones";
+		}
 	}
 
 	public void setTipoDir(String tipoDir) {

@@ -1,27 +1,22 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
-import modelo.Centro;
 import modelo.Departamento;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class VentanaMostrarDepartamentos extends JFrame {
 
@@ -57,6 +52,12 @@ public class VentanaMostrarDepartamentos extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(77);
 		table.getColumnModel().getColumn(1).setPreferredWidth(78);
@@ -87,7 +88,7 @@ public class VentanaMostrarDepartamentos extends JFrame {
 		for (Departamento departamento : lista) {
 			Object fila [] = {
 					departamento.getCodDepartamento(), departamento.getCodCentro(),
-					departamento.getTipoDir(), departamento.getPresupuesto(),
+					departamento.getTipoDirTexto(), departamento.getPresupuesto(),
 					departamento.getNombre()
 			};
 			modelo.addRow(fila);
