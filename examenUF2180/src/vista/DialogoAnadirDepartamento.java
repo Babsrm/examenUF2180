@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -24,8 +25,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
+import modelo.Centro;
 import modelo.Departamento;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JComboBox;
 
 public class DialogoAnadirDepartamento extends JDialog {
 
@@ -33,7 +36,7 @@ public class DialogoAnadirDepartamento extends JDialog {
 	private JTextField txtCodDepartamento;
 	private JTextField txtNombre;
 	private Controlador controlador;
-	private JTextField txtCodCentro;
+	private static JComboBox comboCentro;
 	private final ButtonGroup buttonGroupTipoDir = new ButtonGroup();
 	private JSpinner spinner;
 	private JRadioButton rdbtnPropiedad;
@@ -73,10 +76,9 @@ public class DialogoAnadirDepartamento extends JDialog {
 				panel.add(lblCodCentro, "cell 1 1,alignx trailing");
 			}
 			{
-				txtCodCentro = new JTextField();
-				txtCodCentro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				txtCodCentro.setColumns(10);
-				panel.add(txtCodCentro, "cell 2 1 2 1,growx");
+				comboCentro = new JComboBox();
+				comboCentro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				panel.add(comboCentro, "cell 2 1 2 1,growx");
 			}
 			{
 				JLabel lblTipoDir = new JLabel("Tipo Dirección:");
@@ -157,10 +159,12 @@ public class DialogoAnadirDepartamento extends JDialog {
 
 	protected void recogerDatos() {
 	try {
+		Centro c = (Centro) comboCentro.getSelectedItem(); //creo este objeto para escoger de él la opción que el usuario ha elegido del comboBox
+	
 		int codDepartamento = Integer.parseInt(txtCodDepartamento.getText());
-		int codCentro = Integer.parseInt(txtCodCentro.getText());
+		int codCentro =c.getCod_centro();
 		String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand().toUpperCase();
-	//String tipoDir = "F"; if (rdbtnPropiedad.isSelected()){tipoDir="p"};
+	//String tipoDir = "F"; if (rdbtnPropiedad.isSelected()){tipoDir="p"};  --otra forma
 		int presupuesto = (int) spinner.getValue();
 		String nombre = txtNombre.getText();
 
@@ -185,7 +189,6 @@ public class DialogoAnadirDepartamento extends JDialog {
 	public void vaciarDatos() { 
 //	este método limpia la ventana para que, al insertarse correctamente el nuevo dpto, vuelva a aparecer los campos a insertar vacíos
 		txtCodDepartamento.setText("");
-		txtCodCentro.setText("");
 		spinner.setValue(5);
 		txtNombre.setText("");
 		rdbtnPropiedad.setSelected(true);
@@ -195,6 +198,16 @@ public class DialogoAnadirDepartamento extends JDialog {
 
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
+	}
+
+
+	public static void setListaCentros(ArrayList<Centro> listaCentros) {
+// 	vacío el comboCentro para que no se duplique el listado
+		comboCentro.removeAllItems();
+//	 este método se encarga de recoger la lista y añadirla a jComboBox
+		for (Centro c: listaCentros) {
+			comboCentro.addItem(c);
+		}
 	}
 
 }

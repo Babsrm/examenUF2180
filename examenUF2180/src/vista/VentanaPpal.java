@@ -53,7 +53,7 @@ public class VentanaPpal extends JFrame {
 		JButton btnNuevoCentro = new JButton("Nuevo Centro");
 		btnNuevoCentro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador.mostrarInsertarCentros();
+				controlador.mostrarVentanaInsertarCentros();
 			}
 		});
 		btnNuevoCentro.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -79,7 +79,7 @@ public class VentanaPpal extends JFrame {
 		JButton btnNuevoDepartamento = new JButton("Nuevo Departamento ");
 		btnNuevoDepartamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador.mostrarInsertarDepartamentos();
+				controlador.mostrarVentanaInsertarDepartamentos();
 			}
 		});
 		btnNuevoDepartamento.setFont(new Font("Tahoma", Font.PLAIN, 14));

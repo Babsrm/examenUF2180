@@ -59,7 +59,7 @@ public class Controlador {
 		ventanaMostrarCentros.setVisible(true);
 	}
 	
-	public void mostrarInsertarCentros() {
+	public void mostrarVentanaInsertarCentros() {
 		dialogoAnadirCentro.setVisible(true);
 	}
 
@@ -79,7 +79,9 @@ public class Controlador {
 		ventanaMostrarDepartamentos.setVisible(true);
 	}
 	
-	public void mostrarInsertarDepartamentos() {
+	public void mostrarVentanaInsertarDepartamentos() {
+		ArrayList<Centro> listaCentros = centroDAO.obtenerCentros();
+		DialogoAnadirDepartamento.setListaCentros(listaCentros);
 		dialogoAnadirDepartamento.setVisible(true);
 		
 	}
