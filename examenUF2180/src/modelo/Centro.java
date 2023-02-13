@@ -78,7 +78,7 @@ public class Centro {
 
 	/**
 	 * M�todo que devuelve la direcci�n del centro 
-	 * @param String direccion La direcci�n del centro a devolver
+	 * @param direccion String La direcci�n del centro a devolver
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
