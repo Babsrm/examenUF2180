@@ -1,25 +1,22 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Centro;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class VentanaMostrarCentros extends JFrame {
 
