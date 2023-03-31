@@ -25,7 +25,7 @@ public class VentanaMostrarCentros extends JFrame {
 	private Controlador controlador;
 
 	/**
-	 * Create the frame.
+	 * Se crea la ventana con sus características y funciones.
 	 */
 	public VentanaMostrarCentros() {
 		setBounds(100, 100, 450, 300);
@@ -74,10 +74,17 @@ public class VentanaMostrarCentros extends JFrame {
 		panel.add(btnNewButton);
 	}
 
+	/**
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * @param controlador objeto de la clase {@link Controlador}.
+	 */
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 	}
 
+	/**
+	 * Método que obtiene todos los centros de la ArrayList y los coloca en una fila para poder ser mostrados en la tabla de la interfaz.
+	 */
 	public void setListaCentros(ArrayList<Centro> lista) {
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setRowCount(0);

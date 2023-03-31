@@ -22,7 +22,7 @@ public class VentanaPpal extends JFrame {
 	private Controlador controlador;
 
 	/**
-	 * Create the frame.
+	 * Se crea la ventana principal con sus características y funciones.
 	 */
 	public VentanaPpal() {
 		setTitle("Gesti\u00F3n de Empresas");
@@ -87,6 +87,10 @@ public class VentanaPpal extends JFrame {
 		btnNuevoDepartamento.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
 	}
 
+	/**
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * @param controlador objeto de la clase {@link Controlador}.
+	 */
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;	
 	}

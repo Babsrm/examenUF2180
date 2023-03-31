@@ -24,6 +24,9 @@ public class VentanaMostrarDepartamentos extends JFrame {
 	private JTable table;
 	private Controlador controlador;
 
+	/**
+	 * Se crea la ventana con sus características y funciones.
+	 */
 	public VentanaMostrarDepartamentos() {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -78,10 +81,17 @@ public class VentanaMostrarDepartamentos extends JFrame {
 		panel.add(btnCerrar);
 	}
 
+	/**
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * @param controlador objeto de la clase {@link Controlador}.
+	 */
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 	}
 
+	/**
+	 * Método que obtiene todos los departamentos de la ArrayList y los coloca en una fila para poder ser mostrados en la tabla de la interfaz.
+	 */
 	public void setListaDepartamentos(ArrayList<Departamento> lista) {
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		modelo.setRowCount(0);

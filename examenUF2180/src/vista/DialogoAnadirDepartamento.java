@@ -30,6 +30,11 @@ import modelo.Departamento;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
 
+/**
+ * Clase que crea una interfaz de usuario. En este caso, se corresponde a un diálogo para añadir un nuevo departamento.
+ * @author Barbara Ruiz
+ *
+ */
 public class DialogoAnadirDepartamento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -42,6 +47,9 @@ public class DialogoAnadirDepartamento extends JDialog {
 	private JRadioButton rdbtnPropiedad;
 	private JRadioButton rdbtnFunciones;
 
+	/**
+	 * Se crea el diálogo con sus características y funciones.
+	 */
 	public DialogoAnadirDepartamento() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -157,6 +165,9 @@ public class DialogoAnadirDepartamento extends JDialog {
 	}
 
 
+	/**
+	 * Método que obtiene los datos insertados por el usuario, los recoge en un objeto y los envía al controlador para que se ejecute la acción de insertarDepartamento.
+	 */
 	protected void recogerDatos() {
 	try {
 		Centro c = (Centro) comboCentro.getSelectedItem(); //creo este objeto para escoger de él la opción que el usuario ha elegido del comboBox
@@ -185,9 +196,10 @@ public class DialogoAnadirDepartamento extends JDialog {
 	}
 	}
 
-
+/**
+ * Método que limpia la ventana para que, al insertarse correctamente un nuevo departamento, vuelvan a aparecer los campos a insertar vacíos.
+ */
 	public void vaciarDatos() { 
-//	este método limpia la ventana para que, al insertarse correctamente el nuevo dpto, vuelva a aparecer los campos a insertar vacíos
 		txtCodDepartamento.setText("");
 		spinner.setValue(5);
 		txtNombre.setText("");
@@ -195,16 +207,20 @@ public class DialogoAnadirDepartamento extends JDialog {
 		rdbtnFunciones.setSelected(false);
 	}
 
-
+	/**
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * @param controlador objeto de la clase {@link Controlador}.
+	 */
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 	}
 
-
+/**
+ * Método que recoja la lista de centros para añadirla al jComboBox.
+ * @param listaCentros ArrayList.
+ */
 	public static void setListaCentros(ArrayList<Centro> listaCentros) {
-// 	vacío el comboCentro para que no se duplique el listado
 		comboCentro.removeAllItems();
-//	 este método se encarga de recoger la lista y añadirla a jComboBox
 		for (Centro c: listaCentros) {
 			comboCentro.addItem(c);
 		}

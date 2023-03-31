@@ -21,6 +21,11 @@ import controlador.Controlador;
 import modelo.Centro;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea una interfaz de usuario. En este caso, se corresponde a un diálogo para añadir un nuevo centro.
+ * @author Barbara Ruiz
+ *
+ */
 public class DialogoAnadirCentro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -31,7 +36,7 @@ public class DialogoAnadirCentro extends JDialog {
 
 
 	/**
-	 * Create the dialog.
+	 * Se crea el diálogo con sus características y funciones.
 	 */
 	public DialogoAnadirCentro() {
 		setBounds(100, 100, 450, 300);
@@ -114,7 +119,9 @@ public class DialogoAnadirCentro extends JDialog {
 		}
 	}
 
-
+/**
+ * Método que obtiene los datos insertados por el usuario, los recoge en un objeto y los envía al controlador para que se ejecute la acción de insertarCentro.
+ */
 	protected void recogerDatos() {
 		int cod_centro = Integer.parseInt(txtCodCentro.getText());
 		String nombre = txtNombre.getText();
@@ -124,7 +131,10 @@ public class DialogoAnadirCentro extends JDialog {
 		
 	}
 
-
+/**
+ * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+ * @param controlador objeto de la clase {@link Controlador}.
+ */
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 	}
