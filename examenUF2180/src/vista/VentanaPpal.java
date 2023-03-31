@@ -32,14 +32,16 @@ public class VentanaPpal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow][][20.00,grow][][grow]", "[grow][grow][grow]"));
-		
+
 		JPanel panel = new JPanel();
 		panel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gesti\u00F3n de Centros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		((TitledBorder)  panel.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Gesti\u00F3n de Centros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		((TitledBorder) panel.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(panel, "cell 1 1,grow");
 		panel.setLayout(new MigLayout("", "[]", "[::100px,grow][27.00,grow][::100px,grow]"));
-		
+
 		JButton btnVerCentros = new JButton("Ver Centros");
 		btnVerCentros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +51,7 @@ public class VentanaPpal extends JFrame {
 		btnVerCentros.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(btnVerCentros, "cell 0 0,grow");
 		btnVerCentros.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
-		
+
 		JButton btnNuevoCentro = new JButton("Nuevo Centro");
 		btnNuevoCentro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -59,13 +61,15 @@ public class VentanaPpal extends JFrame {
 		btnNuevoCentro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(btnNuevoCentro, "cell 0 2,growy");
 		btnNuevoCentro.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/a\u00F1adir32.png")));
-		
+
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gesti\u00F3n de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		((TitledBorder)  panel_1.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Gesti\u00F3n de Empleados", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		((TitledBorder) panel_1.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(panel_1, "cell 3 1,grow");
 		panel_1.setLayout(new MigLayout("", "[]", "[::100px,grow][36.00,grow][::100px,grow]"));
-		
+
 		JButton btnVerDepartamentos = new JButton("Ver Departamentos");
 		btnVerDepartamentos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,7 +79,7 @@ public class VentanaPpal extends JFrame {
 		btnVerDepartamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_1.add(btnVerDepartamentos, "cell 0 0,grow");
 		btnVerDepartamentos.setIcon(new ImageIcon(VentanaPpal.class.getResource("/images/tabla32.png")));
-		
+
 		JButton btnNuevoDepartamento = new JButton("Nuevo Departamento ");
 		btnNuevoDepartamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,11 +92,13 @@ public class VentanaPpal extends JFrame {
 	}
 
 	/**
-	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que
+	 * este tome poder y pueda ejecutar las demandas del usuario.
+	 * 
 	 * @param controlador objeto de la clase {@link Controlador}.
 	 */
 	public void setControlador(Controlador controlador) {
-		this.controlador=controlador;	
+		this.controlador = controlador;
 	}
 
 }

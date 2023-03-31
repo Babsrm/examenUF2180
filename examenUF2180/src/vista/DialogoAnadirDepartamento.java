@@ -31,7 +31,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
 
 /**
- * Clase que crea una interfaz de usuario. En este caso, se corresponde a un diálogo para añadir un nuevo departamento.
+ * Clase que crea una interfaz de usuario. En este caso, se corresponde a un
+ * diálogo para añadir un nuevo departamento.
+ * 
  * @author Barbara Ruiz
  *
  */
@@ -58,13 +60,16 @@ public class DialogoAnadirDepartamento extends JDialog {
 		contentPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Detalles del departamento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			((TitledBorder)  panel.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
+			panel.setBorder(new TitledBorder(
+					new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+					"Detalles del departamento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			((TitledBorder) panel.getBorder()).setTitleFont(new Font("Tahoma", Font.PLAIN, 14));
 			contentPanel.add(panel, "cell 0 0,grow");
 			panel.setLayout(new MigLayout("", "[][][grow][grow]", "[][][][][]"));
 			{
 				JLabel lblNewLabel_3 = new JLabel("");
-				lblNewLabel_3.setIcon(new ImageIcon(DialogoAnadirDepartamento.class.getResource("/images/editar32.png")));
+				lblNewLabel_3
+						.setIcon(new ImageIcon(DialogoAnadirDepartamento.class.getResource("/images/editar32.png")));
 				panel.add(lblNewLabel_3, "cell 0 0 1 5");
 			}
 			{
@@ -164,42 +169,47 @@ public class DialogoAnadirDepartamento extends JDialog {
 		}
 	}
 
-
 	/**
-	 * Método que obtiene los datos insertados por el usuario, los recoge en un objeto y los envía al controlador para que se ejecute la acción de insertarDepartamento.
+	 * Método que obtiene los datos insertados por el usuario, los recoge en un
+	 * objeto y los envía al controlador para que se ejecute la acción de
+	 * insertarDepartamento.
 	 */
 	protected void recogerDatos() {
-	try {
-		Centro c = (Centro) comboCentro.getSelectedItem(); //creo este objeto para escoger de él la opción que el usuario ha elegido del comboBox
-	
-		int codDepartamento = Integer.parseInt(txtCodDepartamento.getText());
-		int codCentro =c.getCod_centro();
-		String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand().toUpperCase();
-	//String tipoDir = "F"; if (rdbtnPropiedad.isSelected()){tipoDir="p"};  --otra forma
-		int presupuesto = (int) spinner.getValue();
-		String nombre = txtNombre.getText();
+		try {
+			Centro c = (Centro) comboCentro.getSelectedItem(); // creo este objeto para escoger de él la opción que el
+																// usuario ha elegido del comboBox
 
-		Departamento dpto = new Departamento(codDepartamento, codCentro, tipoDir, presupuesto, nombre);
-		controlador.insertarDepartamento(dpto);
+			int codDepartamento = Integer.parseInt(txtCodDepartamento.getText());
+			int codCentro = c.getCod_centro();
+			String tipoDir = buttonGroupTipoDir.getSelection().getActionCommand().toUpperCase();
+			// String tipoDir = "F"; if (rdbtnPropiedad.isSelected()){tipoDir="p"}; --otra
+			// forma
+			int presupuesto = (int) spinner.getValue();
+			String nombre = txtNombre.getText();
 
-		JOptionPane.showMessageDialog(this, "Departamento insertado correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
-		
-		this.setVisible(false);
-		vaciarDatos();
+			Departamento dpto = new Departamento(codDepartamento, codCentro, tipoDir, presupuesto, nombre);
+			controlador.insertarDepartamento(dpto);
+
+			JOptionPane.showMessageDialog(this, "Departamento insertado correctamente", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			this.setVisible(false);
+			vaciarDatos();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this,
+					"Hay datos sin introducir. Por favor, introduzca los datos numéricos correctos en código departamento/cento y los que puedan faltar.",
+					"Faltan datos", JOptionPane.ERROR_MESSAGE);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, "Error al insertar." + e.getMessage() + " " + e.getSQLState(),
+					"Error al insertar", JOptionPane.ERROR_MESSAGE);
 		}
-		catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca los datos numéricos correctos en código departamento/cento y los que puedan faltar.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
-		}
-	catch (SQLException e) {
-		JOptionPane.showMessageDialog(this, "Error al insertar." +e.getMessage() + " "
-				+ e.getSQLState(), "Error al insertar",JOptionPane.ERROR_MESSAGE);
-	}
 	}
 
-/**
- * Método que limpia la ventana para que, al insertarse correctamente un nuevo departamento, vuelvan a aparecer los campos a insertar vacíos.
- */
-	public void vaciarDatos() { 
+	/**
+	 * Método que limpia la ventana para que, al insertarse correctamente un nuevo
+	 * departamento, vuelvan a aparecer los campos a insertar vacíos.
+	 */
+	public void vaciarDatos() {
 		txtCodDepartamento.setText("");
 		spinner.setValue(5);
 		txtNombre.setText("");
@@ -208,20 +218,23 @@ public class DialogoAnadirDepartamento extends JDialog {
 	}
 
 	/**
-	 * Método que une la interfaz gráfica y sus acciones con el controlador para que este tome poder y pueda ejecutar las demandas del usuario.
+	 * Método que une la interfaz gráfica y sus acciones con el controlador para que
+	 * este tome poder y pueda ejecutar las demandas del usuario.
+	 * 
 	 * @param controlador objeto de la clase {@link Controlador}.
 	 */
 	public void setControlador(Controlador controlador) {
-		this.controlador=controlador;
+		this.controlador = controlador;
 	}
 
-/**
- * Método que recoja la lista de centros para añadirla al jComboBox.
- * @param listaCentros ArrayList.
- */
+	/**
+	 * Método que recoja la lista de centros para añadirla al jComboBox.
+	 * 
+	 * @param listaCentros ArrayList.
+	 */
 	public static void setListaCentros(ArrayList<Centro> listaCentros) {
 		comboCentro.removeAllItems();
-		for (Centro c: listaCentros) {
+		for (Centro c : listaCentros) {
 			comboCentro.addItem(c);
 		}
 	}

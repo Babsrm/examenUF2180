@@ -1,7 +1,8 @@
 package controlador;
 
 /**
- * Clase que inicia el programa. Para ello, crea un nueva clase {@link Controlador}.
+ * Clase que inicia el programa. Para ello, crea un nueva clase
+ * {@link Controlador}.
  * 
  * @author Barbara Ruiz
  *
