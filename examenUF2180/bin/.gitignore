@@ -1,5 +1,8 @@
-/modelo/
-/dao/
 /conexion/
 /controlador/
+/dao/
+/driver/
+/images/
+/modelo/
+/sql/
 /vista/

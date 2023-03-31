@@ -3,9 +3,8 @@ package modelo;
 import java.util.Objects;
 
 /** 
- * Clase que modela un objeto de tipo Centro para trabajar con las tablas de la 
- * base de datos
- * @author David
+ * Clase que modela un objeto de tipo Centro para trabajar con las tablas de la base de datos
+ * @author Barbara Ruiz
  *
  */
 public class Centro {
