@@ -15,8 +15,7 @@ public class Centro {
 	
 	
 	/**
-	 * Constructor sin par�metros. S�lo incializa las variables de tipo String
-	 * a la cadena vac�a
+	 * Constructor sin par�metros. S�lo incializa las variables de tipo String a la cadena vac�a.
 	 */
 	public Centro() {
 		this.nombre="";
@@ -88,6 +87,9 @@ public class Centro {
 		return Objects.hash(cod_centro);
 	}
 
+	/**
+	 * Método que indica si dos objetos de la clase {@link Centro} son iguales.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -100,6 +102,9 @@ public class Centro {
 		return cod_centro == other.cod_centro;
 	}
 
+	/**
+	 * Método que pasa a cadena de caracteres el objeto {@link Centro}.
+	 */
 	@Override
 	public String toString() {
 		return this.cod_centro + " - " + this.getNombre();

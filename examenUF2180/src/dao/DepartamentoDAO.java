@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import conexion.ConexionBD;
-import modelo.Centro;
 import modelo.Departamento;
 
 /**
