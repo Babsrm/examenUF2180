@@ -8,16 +8,31 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import conexion.ConexionBD;
+import modelo.Centro;
 import modelo.Departamento;
 
+/**
+ * Clase que implementa un CRUD de la base de datos.
+ * (Create, Read, Update y Delete).
+ * @author Barbara
+ *
+ */
 public class DepartamentoDAO {
 
 	private ConexionBD conexion;
 	
+	/**
+	 * Constructor de la clase que crea una nueva conexión (@link ConexionBD) a la base de datos.
+	 */
     public DepartamentoDAO() {
         this.conexion = new ConexionBD();
     }
 
+    /**
+     * Método que recoge todos los departamentos de la base de datos. Tras determinar la conexión a la base de datos, el método ejecuta una consulta a ésta. Con un bucle, se recorren todas las filas de la tabla; cada fila es almacenada como un objeto {@link Departamento} y cada departamento es almacenado dentro de la ArrayList.
+     * @return ArrayList<Departamento> Lista de objetos {@link Departamento}; todos los departamentos de la base de datos.
+     * @catch SQLException Error indefinido que se indica específicamente en la consola.
+     */
     public ArrayList<Departamento> obtenerTodosDepartamentos() {
 		Connection con = conexion.getConexion();
 		Statement consulta = null; 
@@ -56,7 +71,12 @@ public class DepartamentoDAO {
 		return lista;
     }
 
-
+    /**
+     * Método para obtener un objeto departamento (clase {@link Departamento}) en la base de datos.
+     * Realiza una consulta a la base de datos según el objeto departamento que haya indicado el usuario.
+     * @param departamento objeto de la clase {@link Departamento}.
+     * @return Departamento objeto clase {@link Departamento}. 
+     */
     public Departamento obtenerUnDepartamento(int codDepartamento) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
@@ -94,6 +114,12 @@ public class DepartamentoDAO {
 		return dpto;
     }
 
+    /**
+     * Método para insertar un objeto departamento (clase {@link Departamento}) en la base de datos.
+     * Realiza una inserción a la base de datos según el objeto departamento que haya indicado el usuario.
+     * @param departamento objeto de la clase {@link Departamento}.
+     * @return int 
+     */
     public int insertarDepartamento(Departamento dpto) throws SQLException {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
@@ -128,6 +154,12 @@ public class DepartamentoDAO {
 		return resultado;
     }
     
+    /**
+     * Método para actualizar un registro departamento (clase {@link Departamento}) de la base de datos. 
+     * Se obtiene una conexión a la base de datos; se realiza la consulta de actualización con los datos del objeto departamento que ha indicado el usuario.
+     * @param dpto clase {@link Departamento}.
+     * @return int
+     */
     public int actualizarDepartamento(Departamento dpto) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
@@ -161,7 +193,12 @@ public class DepartamentoDAO {
 		return resultado;
     }
 
-
+    /**
+     * Método para eliminar un registro departamento (clase {@link Departamento}) de la base de datos según su código de departamento. 
+     * Se obtiene una conexión a la base de datos; se realiza la consulta de eliminación con los datos del objeto departamento que ha indicado el usuario.
+     * @param codDepartamento int
+     * @return int
+     */
     public int eliminarDepartamento(int codDepartamento) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dao;
 
 import java.sql.Connection;
@@ -14,19 +11,27 @@ import conexion.ConexionBD;
 import modelo.Centro;
 
 /**
- * @author David
- * Clase que implementa un CRUD de la base batos
- * (Create, Read, update y delete)
+ * 
+ * Clase que implementa un CRUD de la base datos.
+ * (Create, Read, Update y Delete).
+ * @author Barbara Ruiz
  */
 public class CentroDAO {
 
 	private ConexionBD conexion;
 	
+	/**
+	 * Constructor de la clase que crea una nueva conexión (@link ConexionBD) a la base de datos.
+	 */
     public CentroDAO() {
         this.conexion = new ConexionBD();
     }
 
-
+/**
+ * Método que recoge todos los centros de la base de datos. Tras determinar la conexión a la base de datos, el método ejecuta una consulta a ésta. Con un bucle, se recorren todas las filas de la tabla; cada fila es almacenada como un objeto {@link Centro} y cada centro es almacenado dentro de la ArrayList.
+ * @return ArrayList<Centro> Lista de objetos {@link Centro}; todos los centros de la base de datos.
+ * @catch SQLException Error indefinido que se indica específicamente en la consola.
+ */
     public ArrayList<Centro> obtenerCentros() {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
@@ -64,7 +69,12 @@ public class CentroDAO {
 		return lista;
     }
 
-    
+    /**
+     * Método para obtener un objeto centro (clase {@link Centro}) en la base de datos.
+     * Realiza una consulta a la base de datos según el objeto centro que haya indicado el usuario.
+     * @param centro objeto de la clase {@link Centro}.
+     * @return Centro objeto clase {@link Centro}. 
+     */
     public Centro obtenerCentro(int cod_centro) {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
@@ -104,6 +114,12 @@ public class CentroDAO {
     }
 
 
+    /**
+     * Método para insertar un objeto centro (clase {@link Centro}) en la base de datos.
+     * Realiza una inserción a la base de datos según el objeto centro que haya indicado el usuario.
+     * @param centro objeto de la clase {@link Centro}.
+     * @return int 
+     */
     public int insertarCentro(Centro centro) {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
@@ -121,7 +137,7 @@ public class CentroDAO {
 			resultado=consulta.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("Error al realizar la inserci�n del centro: "
+			System.out.println("Error al realizar la inserci�n del centro: "
 		        +e.getMessage());
 		} finally {
 			try {
@@ -136,6 +152,12 @@ public class CentroDAO {
 		return resultado;
     }
 
+    /**
+     * Método para actualizar un registro centro (clase {@link Centro}) de la base de datos. 
+     * Se obtiene una conexión a la base de datos; se realiza la consulta de actualización con los datos del objeto centro que ha indicado el usuario.
+     * @param centro clase {@link Centro}.
+     * @return int
+     */
     public int actualizarAutor(Centro centro) {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
@@ -168,8 +190,13 @@ public class CentroDAO {
 		return resultado;
     }
 
-
-    public int eliminarAutores(Centro centro) {
+    /**
+     * Método para eliminar un registro centro (clase {@link Centro}) de la base de datos. 
+     * Se obtiene una conexión a la base de datos; se realiza la consulta de eliminación con los datos del objeto centro que ha indicado el usuario.
+     * @param centro clase {@link Centro}.
+     * @return int
+     */
+    public int eliminarCentro(Centro centro) {
     	// Obtenemos una conexion a la base de datos.
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
